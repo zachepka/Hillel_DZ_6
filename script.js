@@ -1,12 +1,13 @@
-let userInput = prompt("Введіть тризначне число:").trim();
+let userInput = prompt("Введіть тризначне число:");
 
-if (!/^-?\d{3}$/.test(userInput)) {
+if (userInput === null || !/^-?\d{3}$/.test(userInput.trim())) {
     console.log("Помилка: Введіть тризначне число.");
 } else {
-    const digits = userInput.replace('-', '');
-    const allSame = digits[0] === digits[1] && digits[1] === digits[2];
+    userInput = userInput.trim();
+    const digits = userInput.replace('-', '').split('');
+    const allSame = digits.every(digit => digit === digits[0]);
     const anySame = new Set(digits).size !== digits.length;
-    
+
     if (allSame) {
         console.log("У числа всі цифри однакові.");
     } else if (anySame) {
