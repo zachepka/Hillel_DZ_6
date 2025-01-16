@@ -1,9 +1,8 @@
-let userInput = prompt("Введіть тризначне число:");
+let userInput = prompt("Введіть тризначне число:").trim();
 
-if (userInput === null || !/^-?\d{3}$/.test(userInput.trim())) {
+if (!/^-?\d+$/.test(userInput) || userInput.length < 3 || userInput.length > 4 || (userInput.length === 4 && userInput[0] !== '-')) {
     console.log("Помилка: Введіть тризначне число.");
 } else {
-    userInput = userInput.trim();
     const digits = userInput.replace('-', '').split('');
     const allSame = digits.every(digit => digit === digits[0]);
     const anySame = new Set(digits).size !== digits.length;
