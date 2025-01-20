@@ -1,17 +1,23 @@
-let userInput = prompt("Введіть тризначне число:").trim();
+const userInput = prompt("Введіть тризначне число:");
 
-if (!/^-?\d+$/.test(userInput) || userInput.length < 3 || userInput.length > 4 || (userInput.length === 4 && userInput[0] !== '-')) {
-    console.log("Помилка: Введіть тризначне число.");
+if (userInput === null) {
+    console.log("Помилка: Ви відмовилися від введення значення!");
 } else {
-    const digits = userInput.replace('-', '').split('');
-    const allSame = digits.every(digit => digit === digits[0]);
-    const anySame = new Set(digits).size !== digits.length;
+    const trimmedInput = userInput.trim();
 
-    if (allSame) {
-        console.log("У числа всі цифри однакові.");
-    } else if (anySame) {
-        console.log("Число має дві однакові цифри.");
+    if (!/^-?\d+$/.test(trimmedInput) || trimmedInput.length < 3 || trimmedInput.length > 4 || (trimmedInput.length === 4 && trimmedInput[0] !== '-') || /^\s+$/.test(trimmedInput)) {
+        console.log("Помилка: Введіть тризначне число");
     } else {
-        console.log("У числа немає однакових цифр.");
+        const digits = trimmedInput.replace('-', '').split('');
+        const allSame = digits.every(digit => digit === digits[0]);
+        const anySame = new Set(digits).size !== digits.length;
+
+        if (allSame) {
+            console.log("У числа всі цифри однакові");
+        } else if (anySame) {
+            console.log("Число має дві однакові цифри");
+        } else {
+            console.log("У числа немає однакових цифр");
+        }
     }
 }
